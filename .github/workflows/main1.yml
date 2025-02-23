@@ -1,0 +1,17 @@
+---
+name: code build and review
+on: push
+jobs:
+  buildjob:
+    runs-om: amazon-linux
+    steps:
+      - name: clone the repo
+        uses: actions/checkout@v4
+      - name: setup java17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: build the code
+        run: mvn package
